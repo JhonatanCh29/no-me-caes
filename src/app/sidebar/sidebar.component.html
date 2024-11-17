@@ -1,0 +1,54 @@
+<div class="topbar">
+    <div class="topbar-left">
+        <button pButton icon="pi pi-bars" class="menu-toggle-button" (click)="toggleSidebar()"></button>
+        <img src="icons/logo.png" alt="Logo" class="topbar-logo">
+    </div>
+    <div class="topbar-right">
+        <i class="pi pi-th-large grid-icon" (click)="overlayPanel.toggle($event)"></i>
+        
+        <span class="font-bold">Administrador</span>
+        <p-avatar image="icons/image.png" shape="circle"></p-avatar>
+        
+        <p-overlayPanel #overlayPanel>
+            <div class="overlay-content">
+                <button class="logout-button" (click)="logout()">Cerrar sesión</button>
+            </div>
+        </p-overlayPanel>
+    </div>
+</div>
+
+<div class="sidebar-container" [ngClass]="{'collapsed': isCollapsed}">
+    <div class="menu-items">
+      <a
+        [routerLink]="[' ']"
+        class="menu-item p-d-flex p-ai-center p-jc-start"
+        [ngClass]="{'selected': selectedItem === 'estadisticos'}"
+        (click)="selectItem('estadisticos')">
+        <i class="pi pi-user p-mr-2"></i>
+        <span class="menu-text">Estadisticos</span>
+      </a>
+      <a
+        [routerLink]="['/gestinar']"
+        class="menu-item p-d-flex p-ai-center p-jc-start"
+        [ngClass]="{'selected': selectedItem === 'gestionar'}"
+        (click)="selectItem('gestionar')">
+        <i class="pi pi-folder-open p-mr-2"></i>
+        <span class="menu-text">Gestionar Usuarios</span>
+      </a>
+    </div>
+  
+    <div class="menu-footer">
+      <a
+        [routerLink]="['/ajustes']"
+        class="menu-item p-d-flex p-ai-center p-jc-start"
+        [ngClass]="{'selected': selectedItem === 'ajustes'}"
+        (click)="selectItem('ajustes')">
+        <i class="pi pi-cog p-mr-2"></i>
+        <span class="menu-text">Ajustes</span>
+      </a>
+    </div>
+</div>
+<div class="main-content">
+    <router-outlet></router-outlet>
+</div>
+
